@@ -1,0 +1,45 @@
+{
+  "format": 1,
+  "stores": [
+    {
+      "id": "device-preferences",
+      "schema": {
+        "name": "ae/preference-record",
+        "version": "1.0.0",
+        "file": "interfaces/preference-record.schema.json"
+      }
+    }
+  ],
+  "export": [
+    {
+      "format": "ndjson",
+      "portable": true,
+      "operation": "exportAll",
+      "description": "One {name,value} record per chosen preference; defaults are not written."
+    }
+  ],
+  "import": [
+    {
+      "format": "ndjson",
+      "portable": true,
+      "operation": "importAll"
+    }
+  ],
+  "steps": [],
+  "verification": {
+    "counts": true,
+    "checksums": "none: records are tiny; compare exported text byte for byte",
+    "sampleReadBack": 6,
+    "endToEnd": "tests/web.test.ts"
+  },
+  "limits": {
+    "maxMegabytes": 1,
+    "requiresStop": false,
+    "cannotPreserve": [
+      "device ids of cameras and microphones, which differ between devices"
+    ]
+  },
+  "retention": {
+    "afterRemovalDays": 0
+  }
+}

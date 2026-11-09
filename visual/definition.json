@@ -1,0 +1,44 @@
+{
+  "id": "ourapps-ae.preferences",
+  "name": "Preferences",
+  "kind": "component",
+  "status": "example",
+  "package": "ourapps-ae/preferences",
+  "version": "0.1.1",
+  "ports": [
+    {
+      "id": "preferences",
+      "name": "Preferences",
+      "direction": "output",
+      "kind": "interface",
+      "type": "ae/preferences",
+      "version": "1.0.0"
+    }
+  ],
+  "settings": [
+    {
+      "id": "defaultSound",
+      "name": "Defaultsound",
+      "type": "boolean",
+      "required": false,
+      "secret": false,
+      "default": true
+    },
+    {
+      "id": "defaultMicrophoneOn",
+      "name": "Defaultmicrophoneon",
+      "type": "boolean",
+      "required": false,
+      "secret": false,
+      "default": true
+    },
+    {
+      "id": "defaultCameraOn",
+      "name": "Defaultcameraon",
+      "type": "boolean",
+      "required": false,
+      "secret": false,
+      "default": true
+    }
+  ]
+}

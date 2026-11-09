@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "preferences-connected",
+  "title": "Preferences: connected consumer",
+  "status": "example",
+  "view": "component",
+  "focus": "component",
+  "definitions": [
+    {
+      "id": "ourapps-ae.preferences",
+      "name": "Preferences",
+      "kind": "component",
+      "status": "example",
+      "package": "ourapps-ae/preferences",
+      "version": "0.1.1",
+      "ports": [
+        {
+          "id": "preferences",
+          "name": "Preferences",
+          "direction": "output",
+          "kind": "interface",
+          "type": "ae/preferences",
+          "version": "1.0.0"
+        }
+      ],
+      "settings": [
+        {
+          "id": "defaultSound",
+          "name": "Defaultsound",
+          "type": "boolean",
+          "required": false,
+          "secret": false,
+          "default": true
+        },
+        {
+          "id": "defaultMicrophoneOn",
+          "name": "Defaultmicrophoneon",
+          "type": "boolean",
+          "required": false,
+          "secret": false,
+          "default": true
+        },
+        {
+          "id": "defaultCameraOn",
+          "name": "Defaultcameraon",
+          "type": "boolean",
+          "required": false,
+          "secret": false,
+          "default": true
+        }
+      ]
+    },
+    {
+      "id": "consumer",
+      "name": "Example application consumer",
+      "kind": "application",
+      "status": "example",
+      "revision": "0.1.0",
+      "ports": [
+        {
+          "id": "preferences",
+          "name": "Preferences",
+          "direction": "input",
+          "kind": "interface",
+          "type": "ae/preferences",
+          "version": "1.0.0",
+          "required": true,
+          "cardinality": "one"
+        }
+      ],
+      "settings": []
+    }
+  ],
+  "instances": [
+    {
+      "id": "component",
+      "name": "Preferences",
+      "definition": "ourapps-ae.preferences",
+      "configuration": {}
+    },
+    {
+      "id": "consumer",
+      "name": "Example consumer",
+      "definition": "consumer",
+      "configuration": {}
+    }
+  ],
+  "connections": [
+    {
+      "source": {
+        "instance": "component",
+        "port": "preferences"
+      },
+      "target": {
+        "instance": "consumer",
+        "port": "preferences"
+      }
+    }
+  ]
+}

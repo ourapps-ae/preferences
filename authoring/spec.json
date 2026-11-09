@@ -1,0 +1,190 @@
+{
+  "name": "preferences",
+  "version": "0.1.1",
+  "title": "Preferences",
+  "keepsData": true,
+  "description": "Language, sound, camera and microphone choices, kept per device.",
+  "facilities": [
+    {
+      "id": "preferences",
+      "description": "Per-device language, sound, camera and microphone choices with storage and change notification"
+    }
+  ],
+  "provides": [
+    {
+      "id": "preferences",
+      "type": "ae/preferences",
+      "version": "1.0.0",
+      "path": "interfaces/preferences.json"
+    }
+  ],
+  "requires": [],
+  "collect": [
+    {
+      "id": "defaultSound",
+      "type": "boolean",
+      "grammar": "boolean",
+      "required": false,
+      "secret": false,
+      "default": true
+    },
+    {
+      "id": "defaultMicrophoneOn",
+      "type": "boolean",
+      "grammar": "boolean",
+      "required": false,
+      "secret": false,
+      "default": true
+    },
+    {
+      "id": "defaultCameraOn",
+      "type": "boolean",
+      "grammar": "boolean",
+      "required": false,
+      "secret": false,
+      "default": true
+    }
+  ],
+  "platforms": [
+    "web",
+    "apple",
+    "android"
+  ],
+  "tools": {
+    "node": "26.5.0",
+    "python3": "3.12.8",
+    "swiftc": "6.4.2",
+    "kotlinc": "2.2.0",
+    "java": "26.0.1"
+  },
+  "suites": [
+    {
+      "id": "web",
+      "argv": [
+        "node",
+        "--test",
+        "tests/web.test.ts"
+      ],
+      "tools": {
+        "node": "26.5.0"
+      },
+      "scope": "required-local",
+      "fixtures": [
+        "examples/consumer.ts",
+        "tests/fixtures/devices.json",
+        "tests/fixtures/preferences.ndjson"
+      ]
+    },
+    {
+      "id": "apple",
+      "argv": [
+        "python3",
+        "tests/native.py",
+        "apple"
+      ],
+      "tools": {
+        "python3": "3.12.8",
+        "swiftc": "6.4.2"
+      },
+      "fixtures": [
+        "tests/apple/main.swift"
+      ],
+      "scope": "platform"
+    },
+    {
+      "id": "android",
+      "argv": [
+        "python3",
+        "tests/native.py",
+        "android"
+      ],
+      "tools": {
+        "python3": "3.12.8",
+        "kotlinc": "2.2.0",
+        "java": "26.0.1"
+      },
+      "fixtures": [
+        "tests/android/Main.kt"
+      ],
+      "scope": "platform"
+    }
+  ],
+  "infrastructure": {
+    "accounts": [],
+    "deployedReason": "Local library; values are kept in the device's own storage. No service is deployed by this package."
+  },
+  "text": {
+    "purpose": "`preferences` keeps what a person chose on one device: the language they picked (or none, to follow the device), whether sound is on, whether the microphone and the camera are on, and which camera and microphone they chose (none means automatic). It reads and writes the device's own storage, tells listeners when a value changes, resets everything to the defaults, and works out whether a saved device is still plugged in. The buttons that change these values belong to controls and video-calls; choosing the text of a language belongs to translations.",
+    "userInputs": "Three settings give the defaults for a device that has never chosen: `defaultSound` (default true), `defaultMicrophoneOn` (true) and `defaultCameraOn` (true). Language and device choices have no default beyond \"follow the device\" and \"automatic\".",
+    "integration": "Web: `createPreferences(localStorage, defaults)`; read with `get`, change with `set`, react with `subscribe`. Sound-making code reads `get(\"sound\")` before each sound, the video component reads the device and on-off choices when it connects and writes them when the person changes them, and the language component reads `get(\"language\")` (null follows the browser). Apple and Android: `DevicePreferences` over `UserDefaults` or `SharedPreferences` (behind the small `PreferenceStorage` interface), with `didChange` for updates. `availableDeviceId` (all platforms) turns a saved device into `\"\"` when it is no longer present. `examples/consumer.ts` is a settings model that applies the choices. The sound-cues and guided-tour components require this interface.",
+    "infrastructure": "No service. Values live in the device's own storage (browser local storage, UserDefaults, SharedPreferences) and are never sent anywhere.",
+    "verification": "Required-local: `node --test tests/web.test.ts` checks defaults, the default storage keys and on/off encoding, removal when returning to automatic, listeners, reset, missing devices, ndjson export and import with rejected lines, and the example. Platform: `python3 tests/native.py apple` compiles and runs the Swift checks; `python3 tests/native.py android` compiles the Kotlin checks (needs kotlinc, not installed on the authoring machine, so not run there).",
+    "scenarios": "A person picks French on the home screen: the next launch starts in French. They turn sound off: every later sound is skipped until they turn it on. They choose an external camera, unplug it and start the application: the camera falls back to automatic but the choice is kept for when it returns. They reset the hints and preferences: everything is back to the device's language and the defaults.",
+    "updates": "Patch updates replace files. The stored values are small per-device choices described in `migration.json`; the default keys are `lang`, `sound`, `micOn`, `camOn`, `cameraDeviceID` and `microphoneDeviceID`. Removal deletes the owned code; stored choices remain on the device until the application clears them."
+  },
+  "agentInstructions": "Select this component for any application with per-device language, sound or camera and microphone choices. Set the three defaults. Connect `preferences` to sound-cues, guided-tour and the video component. The default storage keys are `lang`, `sound`, `micOn`, `camOn`, `cameraDeviceID` and `microphoneDeviceID`; pass `keys` to use others.",
+  "developerInstructions": "Pass the device storage (`localStorage`, `UserDefaults.standard`, your `SharedPreferences` wrapped as `PreferenceStorage`). Show the toggles with the controls component; this component only stores the values. No accounts or keys are needed.",
+  "migration": {
+    "format": 1,
+    "stores": [
+      {
+        "id": "device-preferences",
+        "schema": {
+          "name": "ae/preference-record",
+          "version": "1.0.0",
+          "file": "interfaces/preference-record.schema.json"
+        }
+      }
+    ],
+    "export": [
+      {
+        "format": "ndjson",
+        "portable": true,
+        "operation": "exportAll",
+        "description": "One {name,value} record per chosen preference; defaults are not written."
+      }
+    ],
+    "import": [
+      {
+        "format": "ndjson",
+        "portable": true,
+        "operation": "importAll"
+      }
+    ],
+    "steps": [],
+    "verification": {
+      "counts": true,
+      "checksums": "none: records are tiny; compare exported text byte for byte",
+      "sampleReadBack": 6,
+      "endToEnd": "tests/web.test.ts"
+    },
+    "limits": {
+      "maxMegabytes": 1,
+      "requiresStop": false,
+      "cannotPreserve": [
+        "device ids of cameras and microphones, which differ between devices"
+      ]
+    },
+    "retention": {
+      "afterRemovalDays": 0
+    }
+  },
+  "suitability": {
+    "format": 1,
+    "jobs": [
+      "preferences"
+    ],
+    "profiles": [
+      {
+        "id": "any",
+        "load": {},
+        "cost": "none",
+        "regions": [
+          "any"
+        ],
+        "compliance": []
+      }
+    ],
+    "notes": "Pure functions over device storage; no provider involved."
+  }
+}

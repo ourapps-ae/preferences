@@ -1,0 +1,8 @@
+{
+  "available": [
+    [null, ["cam-a", "cam-b"], ""],
+    ["cam-b", ["cam-a", "cam-b"], "cam-b"],
+    ["cam-z", ["cam-a", "cam-b"], ""],
+    ["cam-a", [], ""]
+  ]
+}

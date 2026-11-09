@@ -1,0 +1,22 @@
+{
+  "id": "preferences",
+  "type": "ae/preferences",
+  "version": "1.0.0",
+  "operations": {
+    "createPreferences": { "arguments": ["storage:KeyValueStorage", "defaults:{sound:boolean,microphoneOn:boolean,cameraOn:boolean}", "keys:Record<PreferenceName,string>"], "returns": "PreferenceStore" },
+    "get": { "arguments": ["name:PreferenceName"], "returns": "Preferences[name]" },
+    "set": { "arguments": ["name:PreferenceName", "value:Preferences[name]"], "returns": "void" },
+    "all": { "arguments": [], "returns": "Preferences" },
+    "reset": { "arguments": [], "returns": "void" },
+    "subscribe": { "arguments": ["listener:(name,value)=>void"], "returns": "()=>void (stop listening)" },
+    "availableDeviceId": { "arguments": ["selected:string|null", "available:string[]"], "returns": "string (\"\" for automatic)" },
+    "exportAll": { "arguments": ["storage:KeyValueStorage", "keys:Record<PreferenceName,string>"], "returns": "string (ndjson, one {name,value} per line)" },
+    "importAll": { "arguments": ["storage:KeyValueStorage", "text:string", "keys:Record<PreferenceName,string>"], "returns": "{imported:integer,rejected:string[]}" }
+  },
+  "types": {
+    "Preferences": "{language:string|null,sound:boolean,microphoneOn:boolean,cameraOn:boolean,cameraDeviceId:string|null,microphoneDeviceId:string|null}",
+    "PreferenceName": "language|sound|microphoneOn|cameraOn|cameraDeviceId|microphoneDeviceId",
+    "storage": "web: string values, booleans as \"on\"/\"off\"; Apple: UserDefaults with Bool values; Android: SharedPreferences with boolean values; keys lang, sound, micOn, camOn, cameraDeviceID, microphoneDeviceID",
+    "native": "DevicePreferences (Apple, Android) has the same names as properties plus didChange and reset"
+  }
+}
