@@ -23,7 +23,8 @@ Dependencies: none.
 `tools.lock.json` pins verification tools: node 26.5.0, python3 3.12.8, swiftc 6.4.2, kotlinc 2.2.0, java 26.0.1. Licence wording remains deferred.
 
 ## Provided interfaces
-- `interfaces/preferences.json` defines `preferences` (ae/preferences) version 1.0.0.
+- `interfaces/preferences.json` defines `preferences` (ae/preferences) version 1.0.0 as an OpenRPC 1.3.2 document: the TypeScript functions and `PreferenceStore.*` methods (tagged `typescript`) and the native `DevicePreferences` class (tagged `swift` and `kotlin`), with the preferences, defaults, keys and records as JSON Schema 2020-12.
+- `interfaces/preference-record.schema.json` is the JSON Schema 2020-12 document of one exported record (ae/preference-record 1.0.0).
 
 ## Required interfaces
 None.

@@ -1,13 +1,49 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "ae/preference-record",
-  "version": "1.0.0",
+  "x-version": "1.0.0",
   "description": "One chosen preference on one device; defaults are not recorded.",
-  "type": "object",
-  "required": ["name", "value"],
-  "additionalProperties": false,
-  "properties": {
-    "name": { "enum": ["language", "sound", "microphoneOn", "cameraOn", "cameraDeviceId", "microphoneDeviceId"] },
-    "value": { "type": ["string", "boolean"], "description": "Boolean for sound, microphoneOn and cameraOn; a non-empty string for the rest." }
-  }
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "name",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "enum": [
+            "sound",
+            "microphoneOn",
+            "cameraOn"
+          ]
+        },
+        "value": {
+          "type": "boolean"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "name",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "enum": [
+            "language",
+            "cameraDeviceId",
+            "microphoneDeviceId"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  ]
 }

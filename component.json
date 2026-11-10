@@ -1,199 +1,24 @@
 {
-  "format": 1,
-  "kind": "component",
-  "identity": {
-    "name": "ourapps-ae/preferences",
-    "version": "0.1.1",
-    "sourceRevision": "19905b75dbea89fbfd424d67fe26c81aaed0e018",
-    "sourceTreeDigest": "0000000000000000000000000000000000000000000000000000000000000000",
-    "licenceStatus": "deferred"
-  },
-  "facilities": [
-    {
-      "id": "preferences",
-      "description": "Per-device language, sound, camera and microphone choices with storage and change notification"
-    }
-  ],
-  "documents": {
-    "contract": "CONTRACT.md",
-    "interfaces": [
-      "interfaces/preference-record.schema.json",
-      "interfaces/preferences.json",
-      "suitability.json",
-      "migration.json"
-    ],
-    "examples": [
-      "examples/consumer.ts"
-    ],
-    "licenceNotice": "LICENCE"
-  },
-  "collect": [
-    {
-      "id": "defaultSound",
-      "type": "boolean",
-      "grammar": "boolean",
-      "required": false,
-      "secret": false,
-      "default": true
-    },
-    {
-      "id": "defaultMicrophoneOn",
-      "type": "boolean",
-      "grammar": "boolean",
-      "required": false,
-      "secret": false,
-      "default": true
-    },
-    {
-      "id": "defaultCameraOn",
-      "type": "boolean",
-      "grammar": "boolean",
-      "required": false,
-      "secret": false,
-      "default": true
-    }
-  ],
-  "files": [
-    {
-      "path": "CONTRACT.md",
-      "executable": false
-    },
-    {
-      "path": "INSTRUCTIONS.md",
-      "executable": false
-    },
-    {
-      "path": "LICENCE",
-      "executable": false
-    },
-    {
-      "path": "SOURCE.md",
-      "executable": false
-    },
-    {
-      "path": "examples/consumer.ts",
-      "executable": false
-    },
-    {
-      "path": "implementation/android/src/main/java/ae/preferences/Preferences.kt",
-      "executable": false
-    },
-    {
-      "path": "implementation/apple/Sources/Preferences.swift",
-      "executable": false
-    },
-    {
-      "path": "implementation/web/preferences.ts",
-      "executable": false
-    },
-    {
-      "path": "interfaces/preference-record.schema.json",
-      "executable": false
-    },
-    {
-      "path": "interfaces/preferences.json",
-      "executable": false
-    },
-    {
-      "path": "migration.json",
-      "executable": false
-    },
-    {
-      "path": "suitability.json",
-      "executable": false
-    },
-    {
-      "path": "tests/android/Main.kt",
-      "executable": false
-    },
-    {
-      "path": "tests/apple/main.swift",
-      "executable": false
-    },
-    {
-      "path": "tests/fixtures/devices.json",
-      "executable": false
-    },
-    {
-      "path": "tests/fixtures/preferences.ndjson",
-      "executable": false
-    },
-    {
-      "path": "tests/native.py",
-      "executable": false
-    },
-    {
-      "path": "tests/web.test.ts",
-      "executable": false
-    },
-    {
-      "path": "tools.lock.json",
-      "executable": false
-    },
-    {
-      "path": "visual/definition.json",
-      "executable": false
-    },
-    {
-      "path": "visual/examples/connected.json",
-      "executable": false
-    },
-    {
-      "path": "visual/output/connected.png",
-      "executable": false
-    },
-    {
-      "path": "visual/output/connected.svg",
-      "executable": false
-    },
-    {
-      "path": "visual/output/description.md",
-      "executable": false
-    }
-  ],
   "artefacts": [
     {
-      "source": "implementation/android/src/main/java/ae/preferences/Preferences.kt",
       "destination": "components/preferences/android/src/main/java/ae/preferences/Preferences.kt",
-      "template": false,
-      "executable": false
+      "executable": false,
+      "source": "implementation/android/src/main/java/ae/preferences/Preferences.kt",
+      "template": false
     },
     {
-      "source": "implementation/apple/Sources/Preferences.swift",
       "destination": "components/preferences/apple/Sources/Preferences.swift",
-      "template": false,
-      "executable": false
+      "executable": false,
+      "source": "implementation/apple/Sources/Preferences.swift",
+      "template": false
     },
     {
-      "source": "implementation/web/preferences.ts",
       "destination": "components/preferences/web/preferences.ts",
-      "template": false,
-      "executable": false
+      "executable": false,
+      "source": "implementation/web/preferences.ts",
+      "template": false
     }
   ],
-  "dependencies": [],
-  "provides": [
-    {
-      "id": "preferences",
-      "type": "ae/preferences",
-      "version": "1.0.0",
-      "path": "interfaces/preferences.json"
-    }
-  ],
-  "requires": [],
-  "visual": {
-    "definition": "visual/definition.json",
-    "examples": [
-      "visual/examples/connected.json"
-    ],
-    "outputs": [
-      "visual/output/connected.svg",
-      "visual/output/connected.png"
-    ],
-    "descriptions": [
-      "visual/output/description.md"
-    ]
-  },
   "capabilities": {
     "hosts": [],
     "secrets": [],
@@ -203,95 +28,274 @@
       "components/preferences/web/preferences.ts"
     ]
   },
+  "collect": [
+    {
+      "default": true,
+      "grammar": "boolean",
+      "id": "defaultSound",
+      "required": false,
+      "secret": false,
+      "type": "boolean"
+    },
+    {
+      "default": true,
+      "grammar": "boolean",
+      "id": "defaultMicrophoneOn",
+      "required": false,
+      "secret": false,
+      "type": "boolean"
+    },
+    {
+      "default": true,
+      "grammar": "boolean",
+      "id": "defaultCameraOn",
+      "required": false,
+      "secret": false,
+      "type": "boolean"
+    }
+  ],
+  "dependencies": [],
+  "documents": {
+    "contract": "CONTRACT.md",
+    "examples": [
+      "examples/consumer.ts"
+    ],
+    "interfaces": [
+      "interfaces/preference-record.schema.json",
+      "interfaces/preferences.json",
+      "migration.json",
+      "suitability.json"
+    ],
+    "licenceNotice": "LICENCE"
+  },
+  "facilities": [
+    {
+      "description": "Per-device language, sound, camera and microphone choices with storage and change notification",
+      "id": "preferences"
+    }
+  ],
+  "files": [
+    {
+      "executable": false,
+      "path": "CONTRACT.md"
+    },
+    {
+      "executable": false,
+      "path": "INSTRUCTIONS.md"
+    },
+    {
+      "executable": false,
+      "path": "LICENCE"
+    },
+    {
+      "executable": false,
+      "path": "NOTICE"
+    },
+    {
+      "executable": false,
+      "path": "SOURCE.md"
+    },
+    {
+      "executable": false,
+      "path": "examples/consumer.ts"
+    },
+    {
+      "executable": false,
+      "path": "implementation/android/src/main/java/ae/preferences/Preferences.kt"
+    },
+    {
+      "executable": false,
+      "path": "implementation/apple/Sources/Preferences.swift"
+    },
+    {
+      "executable": false,
+      "path": "implementation/web/preferences.ts"
+    },
+    {
+      "executable": false,
+      "path": "interfaces/preference-record.schema.json"
+    },
+    {
+      "executable": false,
+      "path": "interfaces/preferences.json"
+    },
+    {
+      "executable": false,
+      "path": "migration.json"
+    },
+    {
+      "executable": false,
+      "path": "suitability.json"
+    },
+    {
+      "executable": false,
+      "path": "tests/android/Main.kt"
+    },
+    {
+      "executable": false,
+      "path": "tests/apple/main.swift"
+    },
+    {
+      "executable": false,
+      "path": "tests/fixtures/devices.json"
+    },
+    {
+      "executable": false,
+      "path": "tests/fixtures/preferences.ndjson"
+    },
+    {
+      "executable": false,
+      "path": "tests/native.py"
+    },
+    {
+      "executable": false,
+      "path": "tests/web.test.ts"
+    },
+    {
+      "executable": false,
+      "path": "tools.lock.json"
+    },
+    {
+      "executable": false,
+      "path": "visual/definition.json"
+    },
+    {
+      "executable": false,
+      "path": "visual/examples/connected.json"
+    },
+    {
+      "executable": false,
+      "path": "visual/output/connected.png"
+    },
+    {
+      "executable": false,
+      "path": "visual/output/connected.svg"
+    },
+    {
+      "executable": false,
+      "path": "visual/output/description.md"
+    }
+  ],
+  "format": 1,
+  "identity": {
+    "licence": "Apache-2.0",
+    "name": "ourapps-ae/preferences",
+    "sourceRevision": "19905b75dbea89fbfd424d67fe26c81aaed0e018",
+    "sourceTreeDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "version": "0.2.0"
+  },
   "infrastructure": {
     "accounts": [],
     "costStatus": "unmeasured",
     "deployedReason": "Local library; values are kept in the device's own storage. No service is deployed by this package."
   },
+  "kind": "component",
+  "provides": [
+    {
+      "id": "preferences",
+      "path": "interfaces/preferences.json",
+      "type": "ae/preferences",
+      "version": "1.0.0"
+    }
+  ],
+  "requires": [],
+  "upgrade": {
+    "migration": "files-only",
+    "policy": "patch"
+  },
   "verification": [
     {
-      "id": "web",
-      "root": "package",
       "argv": [
         "node",
         "--test",
         "tests/web.test.ts"
       ],
       "cwd": ".",
-      "prepare": [],
-      "tools": {
-        "node": "26.5.0"
-      },
+      "expectedExit": 0,
       "fixtures": [
         "examples/consumer.ts",
         "tests/fixtures/devices.json",
         "tests/fixtures/preferences.ndjson"
       ],
+      "id": "web",
       "locks": [
         "tools.lock.json"
       ],
       "network": false,
-      "timeoutSeconds": 120,
-      "expectedExit": 0,
+      "prepare": [],
+      "requirements": [],
+      "root": "package",
       "scope": "required-local",
-      "requirements": []
+      "timeoutSeconds": 120,
+      "tools": {
+        "node": "26.5.0"
+      }
     },
     {
-      "id": "apple",
-      "root": "package",
       "argv": [
         "python3",
         "tests/native.py",
         "apple"
       ],
       "cwd": ".",
-      "prepare": [],
-      "tools": {
-        "python3": "3.12.8",
-        "swiftc": "6.4.2"
-      },
+      "expectedExit": 0,
       "fixtures": [
         "tests/apple/main.swift"
       ],
+      "id": "apple",
       "locks": [
         "tools.lock.json"
       ],
       "network": false,
-      "timeoutSeconds": 120,
-      "expectedExit": 0,
+      "prepare": [],
+      "requirements": [],
+      "root": "package",
       "scope": "platform",
-      "requirements": []
+      "timeoutSeconds": 120,
+      "tools": {
+        "python3": "3.12.8",
+        "swiftc": "6.4.2"
+      }
     },
     {
-      "id": "android",
-      "root": "package",
       "argv": [
         "python3",
         "tests/native.py",
         "android"
       ],
       "cwd": ".",
-      "prepare": [],
-      "tools": {
-        "python3": "3.12.8",
-        "kotlinc": "2.2.0",
-        "java": "26.0.1"
-      },
+      "expectedExit": 0,
       "fixtures": [
         "tests/android/Main.kt"
       ],
+      "id": "android",
       "locks": [
         "tools.lock.json"
       ],
       "network": false,
-      "timeoutSeconds": 120,
-      "expectedExit": 0,
+      "prepare": [],
+      "requirements": [],
+      "root": "package",
       "scope": "platform",
-      "requirements": []
+      "timeoutSeconds": 120,
+      "tools": {
+        "java": "26.0.1",
+        "kotlinc": "2.2.0",
+        "python3": "3.12.8"
+      }
     }
   ],
-  "upgrade": {
-    "policy": "patch",
-    "migration": "files-only"
+  "visual": {
+    "definition": "visual/definition.json",
+    "descriptions": [
+      "visual/output/description.md"
+    ],
+    "examples": [
+      "visual/examples/connected.json"
+    ],
+    "outputs": [
+      "visual/output/connected.svg",
+      "visual/output/connected.png"
+    ]
   }
 }
