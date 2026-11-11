@@ -20,7 +20,7 @@ Three settings give the defaults for a device that has never chosen: `defaultSou
 - `implementation/web/preferences.ts` -> `components/preferences/web/preferences.ts`
 
 Dependencies: none.
-`tools.lock.json` pins verification tools: node 26.5.0, python3 3.12.8, swiftc 6.4.2, kotlinc 2.2.0, java 26.0.1. Licence wording remains deferred.
+`tools.lock.json` pins verification tools: node 26.5, python3 3.12, swiftc 6.4, kotlinc 2.2, java 26.0. Licence wording remains deferred.
 
 ## Provided interfaces
 - `interfaces/preferences.json` defines `preferences` (ae/preferences) version 1.0.0 as an OpenRPC 1.3.2 document: the TypeScript functions and `PreferenceStore.*` methods (tagged `typescript`) and the native `DevicePreferences` class (tagged `swift` and `kotlin`), with the preferences, defaults, keys and records as JSON Schema 2020-12.
@@ -41,9 +41,9 @@ No service. Values live in the device's own storage (browser local storage, User
 ## Verification
 Required-local: `node --test tests/web.test.ts` checks defaults, the default storage keys and on/off encoding, removal when returning to automatic, listeners, reset, missing devices, ndjson export and import with rejected lines, and the example. Platform: `python3 tests/native.py apple` compiles and runs the Swift checks; `python3 tests/native.py android` compiles the Kotlin checks (needs kotlinc, not installed on the authoring machine, so not run there).
 
-- `node --test tests/web.test.ts` (web, required-local; tools: node 26.5.0)
-- `python3 tests/native.py apple` (apple, platform; tools: python3 3.12.8, swiftc 6.4.2)
-- `python3 tests/native.py android` (android, platform; tools: python3 3.12.8, kotlinc 2.2.0, java 26.0.1)
+- `node --test tests/web.test.ts` (web, required-local; tools: node 26.5)
+- `python3 tests/native.py apple` (apple, platform; tools: python3 3.12, swiftc 6.4)
+- `python3 tests/native.py android` (android, platform; tools: python3 3.12, kotlinc 2.2, java 26.0)
 
 ## Scenarios and presentation
 A person picks French on the home screen: the next launch starts in French. They turn sound off: every later sound is skipped until they turn it on. They choose an external camera, unplug it and start the application: the camera falls back to automatic but the choice is kept for when it returns. They reset the hints and preferences: everything is back to the device's language and the defaults.
