@@ -13,6 +13,12 @@
       "template": false
     },
     {
+      "destination": "components/preferences/web/index.ts",
+      "executable": false,
+      "source": "implementation/web/index.ts",
+      "template": false
+    },
+    {
       "destination": "components/preferences/web/preferences.ts",
       "executable": false,
       "source": "implementation/web/preferences.ts",
@@ -25,6 +31,7 @@
     "writes": [
       "components/preferences/android/src/main/java/ae/preferences/Preferences.kt",
       "components/preferences/apple/Sources/Preferences.swift",
+      "components/preferences/web/index.ts",
       "components/preferences/web/preferences.ts"
     ]
   },
@@ -106,6 +113,10 @@
     {
       "executable": false,
       "path": "implementation/apple/Sources/Preferences.swift"
+    },
+    {
+      "executable": false,
+      "path": "implementation/web/index.ts"
     },
     {
       "executable": false,

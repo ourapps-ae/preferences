@@ -26,7 +26,7 @@ struct PreferenceKeys {
 
 // What a person chose on this device: language, sound, camera and microphone. The default keys:
 // "lang" (a String), "sound" (a Bool, on unless turned off) and "cameraDeviceID" (a String).
-final class DevicePreferences {
+public final class DevicePreferences {
     private let storage: PreferenceStorage
     private let defaults: PreferenceDefaults
     private let keys: PreferenceKeys
