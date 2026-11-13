@@ -3,7 +3,7 @@
 ## For the agent
 Select this component for any application with per-device language, sound or camera and microphone choices. Set the three defaults. Connect `preferences` to sound-cues, guided-tour and the video component. The default storage keys are `lang`, `sound`, `micOn`, `camOn`, `cameraDeviceID` and `microphoneDeviceID`; pass `keys` to use others.
 
-- Select package `ourapps-ae/preferences` version `0.2.1`.
+- Select package `ourapps-ae/preferences` version `0.3.0`.
 - Settings to configure:
   - `defaultSound` (boolean; optional; default `True`)
   - `defaultMicrophoneOn` (boolean; optional; default `True`)
